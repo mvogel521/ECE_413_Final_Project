@@ -1,10 +1,10 @@
-const express = require('express');
+var express = require('express');
 var router = express.Router();
 
 
 // Test Route
-router.get('/', (req, res) =>{
-    res.send('Hello World');
-})
+router.get('/', function(req, res, next){
+    res.render('index', {title: "Home"});
+});
 
 module.exports = router;
