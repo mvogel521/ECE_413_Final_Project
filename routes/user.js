@@ -59,7 +59,7 @@ router.post("/logIn", function (req,res){
             if (bcrypt.compareSync(req.body.password, user.password)){
 
                 const token = jwt.encode({email: user.email}, secret);
-
+                
                 user.lastAccess = new Date();
 
                 user.save((err, user) => {
