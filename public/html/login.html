@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <!--Tailwind-->
-    <link href="../stylesheets/output.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascripts/login.js"></script>
     <script src="../javascripts/user.js"></script>
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-
-</head>
-<body>
+    <link href="../stylesheets/output.css" rel="stylesheet">
+  </head>
+  
+  <body>
     <div class="flex justify-center">
         <div class="card bg-primary text-base-content w-96">
             <div class="card-body">
-            <h2 class="card-title text-primary-content">Registration Form</h2>
+            <h2 class="card-title text-primary-content">Login</h2>
             <!--Email-->
               <label class="input input-bordered flex items-center gap-2">
                 <svg
@@ -45,23 +44,13 @@
                 </svg>
                 <input type="password" id="password" class="grow" value="password" />
               </label>
-              <!--Device-->
-              <label class="input input-bordered flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  class="h-4 w-4 opacity-70">
-                  <path xmlns="http://www.w3.org/2000/svg" d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"/>
-                </svg>
-                <input type="text" id="device" class="grow" placeholder="Device"/>
-              </label>
             <div class="card-actions justify-end">
             <!--Create User Account-->
-            <button id="createUser" class="btn">Create Account</button>
+            <button id="loginUser" class="btn">Submit</button>
             </div>
             </div>
         </div>
     </div>
-</body>
-</html> 
+  </body>
+
+  </html>

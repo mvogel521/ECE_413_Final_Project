@@ -1,26 +1,50 @@
 function createUser(){
     //data validation
-    if($('#email').val() == ""){
+    let userEmail = $('#email').val();
+    let userPassword = $('#password').val();
+    let userDevice = $('#device').val();
+
+    if(userEmail == ""){
         window.alert("Please enter your email!");
-        console.log("No Email")
         return;
     }
-    if($('#password').val() == ""){
+    if(userPassword == ""){
         window.alert("Please enter your password!");
-        console.log("No Pass");
         return;
     }
-    else if (!isStrongPassword($('#password').val())){
+    else if (!isStrongPassword(userPassword)){
         window.alert("Invalid Password.");
         return;
     }
-    if($('#device').val() == ""){
+    if(userDevice == ""){
         window.alert("Please enter your device!");
         return;
     }
 
-    console.log("Done")
-    
+    let txdata = {
+        email: userEmail,
+        password: userPassword,
+        device: userDevice
+    }
+
+    $.ajax({
+        url: '/user/create',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(txdata),
+        dataType: 'json'
+    })
+    .done(function (data, textStatus, jqXHR) {
+        $('#rxData').html(JSON.stringify(data, null, 2));
+        if (data.success){
+            setTimeout(function (){
+                window.location = "login.html";
+            }, 1000);
+        }
+    })
+    .fail(function (data, textStatus, jqXHR) {
+        $('#rxData').html(JSON.stringify(data, null, 2));
+    }); 
 }
 
 function isStrongPassword(password){
