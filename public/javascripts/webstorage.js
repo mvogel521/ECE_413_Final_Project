@@ -1,22 +1,22 @@
 // public/javasciprts/webstorage.js
 function saveSessionStorage() {
     // data validation
-    if ($('#name').val() === "") {
-        window.alert("invalid name!");
+    if ($('#email').val() === "") {
+        window.alert("invalid email!");
         return;
     }
-    if ($('#major').val() === "") {
-        window.alert("invalid major!");
+    if ($('#password').val() === "") {
+        window.alert("invalid password!");
         return;
     }
-    sessionStorage.setItem("name", $('#name').val());
-    sessionStorage.setItem("major", $('#major').val());
-    let msgStr = `Saved name (${sessionStorage.getItem("name")}) and major (${sessionStorage.getItem("major")}) in the session storage!`;
+    sessionStorage.setItem("email", $('#email').val());
+    sessionStorage.setItem("device", $('#device').val());
+    let msgStr = `Saved email (${sessionStorage.getItem("email")}) and device (${sessionStorage.getItem("device")}) in the session storage!`;
     $('#rxData').html(msgStr); 
 }
 
 function readSessionStorage() {
-    if ('name' in sessionStorage) {
+    if ('email' in sessionStorage) {
         $('#rxData').html(JSON.stringify(sessionStorage, null, 2)); 
     }
     else {
@@ -26,22 +26,25 @@ function readSessionStorage() {
 
 function saveLocalStorage() {
     // data validation
-    if ($('#name').val() === "") {
-        window.alert("invalid name!");
+    if ($('#email').val() === "") {
+        window.alert("invalid email!");
         return;
     }
-    if ($('#major').val() === "") {
-        window.alert("invalid major!");
+    if ($('#password').val() === "") {
+        window.alert("invalid password!");
         return;
     }
-    localStorage.setItem("name", $('#name').val());
-    localStorage.setItem("major", $('#major').val());
-    let msgStr = `Saved name (${localStorage.getItem("name")}) and major (${localStorage.getItem("major")}) in the local storage!`;
+    let devices = [];
+    devices.push($('#device').val());
+
+    localStorage.setItem("email", $('#email').val());
+    localStorage.setItem("device", JSON.stringify(devices));
+    let msgStr = `Saved email (${localStorage.getItem("email")}) and device (${localStorage.getItem("device")}) in the local storage!`;
     $('#rxData').html(msgStr); 
 }
 
 function readLocalStorage() {
-    if ('name' in localStorage) {
+    if ('email' in localStorage) {
         $('#rxData').html(JSON.stringify(localStorage, null, 2)); 
     }
     else {
@@ -52,6 +55,6 @@ function readLocalStorage() {
 $(function () {
     $('#btnSaveSessionStorage').click(saveSessionStorage);
     $('#btnReadSessionStorage').click(readSessionStorage);
-    $('#btnSaveLocalStorage').click(saveLocalStorage);
+    $('#createUser').click(saveLocalStorage);
     $('#btnReadLocalStorage').click(readLocalStorage);
 });
