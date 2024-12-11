@@ -28,8 +28,6 @@ function loginUser(){
         window.location.replace("account.html");
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
-        let errorMessage = jqXHR.responseJSON?.msg || jqXHR.responseText || "An unknown error occurred.";
-        alert(`Login failed! ${errorMessage}`);
 
         $('#rxData').html(JSON.stringify(jqXHR, null, 2));
         alert(`Login failed! Please check your credentials and try again. ${errorThrown}`);
