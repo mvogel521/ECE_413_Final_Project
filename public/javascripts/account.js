@@ -17,7 +17,7 @@ $(function (){
 
 function logout() {
     localStorage.removeItem("token");
-    window.location.replace("index.html");
+    window.location.replace("../index.html");
 }
 
 function getUserInfo(){
