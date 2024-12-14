@@ -3,17 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors'); // Import CORS middleware
+
+// // Generate a random API Key
+// const API_KEY = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+// console.log(`Generated API Key: ${API_KEY}`); // Print the generated API Key on server startup
 
 const bodyParser = require('body-parser');     // Parses JSON in body
 // for mongDB
-const Student = require("./models/student");
-const Recording = require("./models/lab");
+
 const User = require("./models/user");
 
 var indexRouter = require('./routes/index');
-var studentsRouter = require('./routes/students');
-var labRouter = require('./routes/lab');
 var userRouter = require('./routes/user');
+var particleRouter = require('./routes/particle');
 
 var app = express();
 
@@ -37,6 +40,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -48,9 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/students', studentsRouter);
-app.use('/lab', labRouter);
 app.use('/user', userRouter);
+app.use('/particle', particleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
