@@ -2,45 +2,122 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./stylesheets/index.css">
-        <title>The Heart Track</title>
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" href="/stylesheets/output.css">
     </head>
     <body>
-        <div class="infoSection" style="background-color: cornflowerblue;"><h1>Introduction</h1></div>
-        <!-- Introduction to Project-->
-         <div class="infoSection">
-            <div id="projectDescTitle">
-            <h4>Project Description</h4>
-            <img id = "monitorPic" src="./images/HeartRatePicture.png" alt="Heart Rate Monitor Picture">
-        </div>
-            <div>
-                <p>
-                    The Heart Track project is an IoT-enabled web application for tracking heart rate and blood oxygen saturation levels. It combines a hardware sensor device and web platform, allowing users to configure the frequency and time of day for measurements. The IoT device prompts users to take readings, stores data locally if disconnected, and transmits it to the web application upon reconnection.
+        <div id="navbar-container">
+            <div class="navbar bg-neutral text-neutral-content">
+              <div class="navbar-start">
+                <div class="dropdown">
+                  <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                  </div>
+                  <ul
+                    tabindex="0"
+                    class="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li><a href="/" >About</a></li>
+                    <li><a href="/html/login.html">Log In</a></li>
+                    <li><a href="/html/registration.html">Create an Account</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="navbar-center">
+                  <button class="btn btn-wide btn-ghost text-white">Heart Track</button>
+              </div>
+              <div class="navbar-end">
+                  <button id="btnLogOut" type="button" class="btn btn-outline btn-sm text-white" disabled>Log Out</button>
+              </div>
+            </div>
+          </div>
+          
+        <div class="flex w-full flex-col border-opacity-50">
+            <div class="divider divider-primary">Project Description</div>
+            <div class="card bg-base-300 rounded-box grid h-40 px-6 place-items-center">
+                The Heart Track project is an IoT-enabled web application for tracking heart rate and blood oxygen saturation levels. It combines a hardware sensor device and web platform, allowing users to configure the frequency and time of day for measurements. The IoT device prompts users to take readings, stores data locally if disconnected, and transmits it to the web application upon reconnection.
 
-                    The web app, built with Node.js, Express, and MongoDB, enables users to create accounts, manage devices, and view their health data through daily and weekly summaries, with data visualized on responsive charts. 
-                </p>
+                The web app, built with Node.js, Express, and MongoDB, enables users to create accounts, manage devices, and view their health data through daily and weekly summaries, with data visualized on responsive charts. 
             </div>
-         </div>
-         <!--Team Members-->
-         <div class="infoSection" >
-            <div id="teamMembersTitle">
-                <img id="teamPic" src="./images/TeamPic.png" alt="Shrek Picture">
-                <h4 style="justify-content: center;">Team Members</h4>
+            <div class="divider divider-primary">Team Members</div>
+            <div class="card bg-base-300 rounded-box grid h-80 py-10 px-6">
+                <div class="carousel w-full">
+                    <div id="slide1" class="carousel-item relative w-full">
+                        <div class="flex justify-around">
+                            <img
+                                src="./images/TeamPic.png"
+                                class="float-start size-13" />
+
+                                <div class="card bg-primary text-primary-content w-96  ">
+                                    <div class="card-body">
+                                    <h2 class="card-title">Seti Valencia</h2>
+                                        <ul>
+                                            <li>Major: Software Engineering</li>
+                                            <li>Year: - </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                      <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide4" class="btn btn-circle">❮</a>
+                        <a href="#slide2" class="btn btn-circle">❯</a>
+                      </div>
+                    </div>
+                    <div id="slide2" class="carousel-item relative w-full">
+                        <div class="flex justify-around">
+                            <img
+                                src="./images/TeamPic.png"
+                                class="float-start size-13" />
+
+                                <div class="card bg-primary text-primary-content w-96  ">
+                                    <div class="card-body">
+                                    <h2 class="card-title">Milee Vogel</h2>
+                                        <ul>
+                                            <li>Major: Software Engineering</li>
+                                            <li>Year: - </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                      <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide1" class="btn btn-circle">❮</a>
+                        <a href="#slide3" class="btn btn-circle">❯</a>
+                      </div>
+                    </div>
+                    <div id="slide3" class="carousel-item relative w-full">
+                        <div class="flex justify-around">
+                            <img
+                                src="./images/TeamPic.png"
+                                class="float-start size-13" />
+
+                                <div class="card bg-primary text-primary-content w-96  ">
+                                    <div class="card-body">
+                                    <h2 class="card-title">Paulina Lujan</h2>
+                                        <ul>
+                                            <li>Major: Software Engineering</li>
+                                            <li>Year: Junior </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                      <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#slide2" class="btn btn-circle">❮</a>
+                        <a href="#slide1" class="btn btn-circle">❯</a>
+                      </div>
+                    </div>
+                  </div>
             </div>
-            <div id="#setiInfo">
-                <h5>Seti Valencia</h5>
-            </div>
-            <div id="mileeInfo">
-                <h5>Milee Vogel</h5>
-            </div>
-            <div id="paulinaInfo">
-                <h5>Paulina Lujan</h5>
-                <ul>
-                    <li>Major: Software Engineering</li>
-                    <li>Year: Junior</li>
-                </ul>
-            </div>
-         </div>
+          </div>
     </body>
 </html>
