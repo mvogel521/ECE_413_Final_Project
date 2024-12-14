@@ -1,6 +1,5 @@
 const db = require("../db");
 
-
 /* your schema here */
 const studentSchema = new db.Schema({
     name: String,
@@ -10,10 +9,7 @@ const studentSchema = new db.Schema({
 
 const Student = db.model("Student", studentSchema);
 
-
-
 module.exports = Student;
-
 
 // references
 // https://www.geeksforgeeks.org/mongoose-estimateddocumentcount-function/ 
