@@ -44,13 +44,26 @@ byte rates[RATE_SIZE]; //Array of heart rates
 byte rateSpot = 0;
 long lastBeat = 0; //Time at which the last beat occurred
 
+bool flag = false;
+int analogvalue = 0;
+double tempC = 0;
+char *message = "my name is particle";
+String aString;
+
 float beatsPerMinute;
 int beatAvg;
+int led = D7; // The on-board LED
 
 void setup()
 {
   Serial.begin(115200);
   Serial.println("Initializing...");
+
+  pinMode(led, OUTPUT);
+
+  Particle.variable("flag", flag);
+  Particle.variable("analogvalue", analogvalue);
+  Particle.variable("temp", tempC);
 
   // Initialize sensor
   if (!particleSensor.begin(Wire, I2C_SPEED_FAST)) //Use default I2C port, 400kHz speed
@@ -58,6 +71,13 @@ void setup()
     Serial.println("MAX30105 was not found. Please check wiring/power. ");
     while (1);
   }
+
+  if(Particle.variable("mess", message) == false){
+    //variable not registered!
+  }
+  Particle.variable("mess2", aString);
+  pinMode(A0, INPUT);
+
   Serial.println("Place your index finger on the sensor with steady pressure.");
 
   particleSensor.setup(); //Configure sensor with default settings
@@ -65,17 +85,31 @@ void setup()
   particleSensor.setPulseAmplitudeGreen(0); //Turn off Green LED
 }
 
+
+
+
 void loop()
 {
   long irValue = particleSensor.getIR();
+  delay(2000);
 
-  if (checkForBeat(irValue) == true)
+  digitalWrite(led, HIGH); // Turn ON the LED
+  String temp = String(random(60, 80));
+  Particle.variable("temp", temp);
+  Particle.publish("temp", temp, PRIVATE);
+  delay(30000); // Wait for 30 seconds
+  digitalWrite(led, LOW); // Turn OFF the LED
+  delay(30000); // Wait for 30 seconds
+
+  if (checkForBeat(irValue) > 10000)
   {
     //We sensed a beat!
-    long delta = millis() - lastBeat;
-    lastBeat = millis();
+    // long delta = millis() - lastBeat;
+    // lastBeat = millis();
+    // beatsPerMinute = 60 / (delta / 1000.0);
 
-    beatsPerMinute = 60 / (delta / 1000.0);
+    beatsPerMinute = irValue/1831.0;
+    Particle.publish("eceActivity", String(beatsPerMinute), PRIVATE);
 
     if (beatsPerMinute < 255 && beatsPerMinute > 20)
     {
@@ -88,6 +122,14 @@ void loop()
         beatAvg += rates[x];
       beatAvg /= RATE_SIZE;
     }
+  }
+
+  // SYNTAX
+  bool success = Particle.function("funcKeuy", funcName);
+
+  // Cloud functions must return int and take one String
+  int funcName(String extra){
+    return 0;
   }
 
   Serial.print("IR=");
