@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');     // Parses JSON in body
 // for mongDB
 
 const User = require("./models/user");
+const Recording = require("./models/recording");
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
