@@ -4,6 +4,7 @@
 
 #include "Particle.h"
 #line 1 "c:/Users/milee/Documents/ECE413~1/ECE_413_Final_Project/ECE_413/src/ECE_413.ino"
+#include "Httpclient.h"
 /*
   Optical Heart Rate Detection (PBA Algorithm) using the MAX30105 Breakout
   By: Nathan Seidle @ SparkFun Electronics
@@ -34,8 +35,6 @@
 
 #include "heartRate.h"
 
-void setup();
-void loop();
 #line 31 "c:/Users/milee/Documents/ECE413~1/ECE_413_Final_Project/ECE_413/src/ECE_413.ino"
 MAX30105 particleSensor;
 
@@ -53,6 +52,18 @@ String aString;
 float beatsPerMinute;
 int beatAvg;
 int led = D7; // The on-board LED
+
+httpClient http;
+http_request_t  request;
+http_response_t response;
+http_header_t headers[] = {
+  {"Content-Type", "application/x-www-form-urlencoded"},
+  {"Accept", "*/*"},
+  {NULL,NULL}
+};
+
+String apiKey = "NR520HQHZUP0KEAO";
+String server = "api.thingspeak.com";
 
 void setup()
 {
@@ -84,9 +95,6 @@ void setup()
   particleSensor.setPulseAmplitudeRed(0x0A); //Turn Red LED to low to indicate sensor is running
   particleSensor.setPulseAmplitudeGreen(0); //Turn off Green LED
 }
-// test comment
-
-
 
 
 void loop()
@@ -110,7 +118,6 @@ void loop()
     // beatsPerMinute = 60 / (delta / 1000.0);
 
     beatsPerMinute = irValue/1831.0;
-    Particle.publish("eceActivity", String(beatsPerMinute), PRIVATE);
 
     if (beatsPerMinute < 255 && beatsPerMinute > 20)
     {
@@ -123,6 +130,23 @@ void loop()
         beatAvg += rates[x];
       beatAvg /= RATE_SIZE;
     }
+
+    request.hostname = server;
+    request.port = 80;
+    request.path = "/update";
+    request.body = "api_keys" + apiKey + "&field=" + String(beatsPerMinute);
+
+    // Send the request to Thingspeak
+    http.post(request, response, headers);
+  
+    //Print response (for debugging)
+    Serial.print("Status code: ");
+    Serial.println(response.status);
+    Serial.print("Response: ");
+    Serial.println(response.body);
+
+    delay(30000); //Send data every 30 seconds
+
   }
 
   // SYNTAX
