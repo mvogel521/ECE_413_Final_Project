@@ -31,6 +31,7 @@ router.post('/report', async (req, res) => {
     try {
         // Save the new record
         const newRecord = new Recording({
+            userid: req.body.userid,
             temp1: req.body.temp1,
             temp2: req.body.temp2, // Assuming temp2 is correctly passed in req.body
         });
@@ -54,6 +55,25 @@ router.post('/report', async (req, res) => {
         });
     }
 });
+
+router.get('/getRecordings', async (req, res) => {
+    try {
+        const records = await Recording.find();
+
+        return res.status(200).json({
+            success: true,
+            records: records,
+        });
+    } catch (err) {
+        console.error('Error processing the request:', err);
+        return res.status(500).json({
+            success: false,
+            message: 'An error occurred while processing the request.',
+            error: err.message,
+        });
+    }
+});
+
 
 
 module.exports = router;

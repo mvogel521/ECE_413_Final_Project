@@ -36,6 +36,7 @@ function createUser(){
     })
     .done(function (data, textStatus, jqXHR) {
         $('#rxData').html(JSON.stringify(data, null, 2));
+        
         if (data.success){
             setTimeout(function (){
                 window.location = "login.html";
@@ -45,6 +46,7 @@ function createUser(){
     .fail(function (data, textStatus, jqXHR) {
         $('#rxData').html(JSON.stringify(data, null, 2));
     }); 
+    
 }
 
 function isStrongPassword(password){
@@ -143,6 +145,7 @@ function loginUser(){
     .done (function (data, textStatus, jqXHR){
         localStorage.setItem("token", data.token);
         localStorage.setItem("email", userEmail)
+        
         window.location.replace("account.html");
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
