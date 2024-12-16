@@ -16,6 +16,9 @@ PITCH AND DEMONSTRATION PICTURES / VIDEO:
 
 ![image (1)](https://github.com/user-attachments/assets/69e95c02-b71a-4631-8840-bf30f738f7e5)
 
+Demo video:
+In final project submission zip file.
+
 
 LOGIN CREDENTIALS FOR AN EXISTING USER ACCOUNT WITH RECENTLY COLLECTED DATA:
 
