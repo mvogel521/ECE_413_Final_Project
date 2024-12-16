@@ -2,6 +2,8 @@
 
 Link to server:
 
+http://ec2-18-224-171-9.us-east-2.compute.amazonaws.com:3000/#slide1
+
 Pitch and demonstration videos:
 
 Login credentials for an existing user account with recently collected data:
