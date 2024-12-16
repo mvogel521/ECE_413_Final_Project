@@ -1,6 +1,7 @@
 const db = require ("../db");
 
 const recordingSchema = new db.Schema({
+    userid: String,
     temp1: String,
     temp2: String,
 });

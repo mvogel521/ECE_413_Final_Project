@@ -7,8 +7,7 @@
 //         document.getElementById("navbar-container").appendChild(element);
 //       })
 //       .catch(err => console.error("Error loading the navbar:", err));
-//   });
-  
+//   }); 
   $(function (){
     $.ajax({
         url: '/user/status',
@@ -17,7 +16,7 @@
         dataType: 'json'
     })
     .done(function (data, textStatus, jqXHR) {
-        getUserInfo();
+        // getUserInfo();
         $('#rxData').html(JSON.stringify(data, null, 2));
     })
     .fail(function (jqXHR, textStatus, errorThrown) {
@@ -33,6 +32,8 @@ $(function(){
     dataType: 'json'
   })
   .done(function(data, textStatus, jqXHR){
+    getUserInfo();
+
     localStorage.setItem("device", JSON.stringify(data.user[0].device));
     $('#rxData').html(JSON.stringify(data, null, 2));
   })

@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require("../models/user");
 const jwt = require("jwt-simple");
 const bcrypt = require("bcryptjs");
+var Particle = require('particle-api-js');
 const fs = require('fs');
 
 
@@ -25,6 +26,24 @@ router.post("/create", function (req, res){
                 password: passwordHash,
                 device: req.body.device
             });
+
+            var particle = new Particle();
+            var token;
+
+            particle.login({username: req.body.email, password: passwordHash}).then(
+            function(data) {
+                token = data.body.access_token;
+            },
+            function (err) {
+                console.log('Could not log in.', err);
+            }
+            );
+
+            particle.claimDevice({ deviceId: req.body.device, auth: token }).then(function(data) {
+                console.log('device claim data:', data);
+              }, function(err) {
+                console.log('device claim err:', err);
+              });
 
             newUser.save(function (err, User){
                 if (err){
@@ -121,6 +140,25 @@ router.post("/addDevice", function (req, res){
             res.status(200).json({success: true, user: user});
             
         });
+
+        
+        var particle = new Particle();
+        var token1;
+        
+        particle.login({username: decoded.email, password: decoded.password}).then(
+            function(data) {
+                token1 = data.body.access_token;
+            },
+            function (err) {
+                console.log('Could not log in.', err);
+            }
+            );
+
+            particle.claimDevice({ deviceId: req.body.device, auth: token1 }).then(function(data) {
+                console.log('device claim data:', data);
+              }, function(err) {
+                console.log('device claim err:', err);
+              });
     }
     catch (ex){
         res.status(401).json({success: false, message: "Invalid JWT"});

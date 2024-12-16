@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--Tailwind-->
+    <link href="../stylesheets/output.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../javascripts/user.js"></script>
+    <script type="module" src="../javascripts/recordings.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+
+</head>
+<body>
+  <div id="navbar-container">
+    <div class="navbar bg-neutral text-neutral-content">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h7" />
+            </svg>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li><a href="/" >About</a></li>
+            <li><a href="/html/login.html">Log In</a></li>
+            <li><a href="/html/registration.html">Create an Account</a></li>
+            <li><a href="/html/account.html"> Account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="navbar-center">
+          <button class="btn btn-wide btn-ghost text-white">Heart Track</button>
+      </div>
+      <div class="navbar-end">
+          <button id="btnLogOut" type="button" class="btn btn-outline btn-sm text-white" disabled>Log Out</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="flex justify-center py-10">
+        <div class="card bg-white text-base-content w-96">
+            <div class="card-body">
+            <h2 class="card-title text-primary-content">Tracker Data</h2>
+            <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
