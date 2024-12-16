@@ -1,7 +1,6 @@
 # ECE_413_Final_Project
 
 LINK TO SERVER:
-
 http://ec2-18-224-171-9.us-east-2.compute.amazonaws.com:3000/#slide1
 
 LINK TO GITHUB REPO:
